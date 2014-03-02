@@ -1,0 +1,118 @@
+﻿@using KakRaboti.Helpers
+@{
+    ViewBag.Title = "Начало";
+}
+<div id="center-panel">
+    @Html.Partial("_SliderPartial", Helpers.GetArticlesWithThumbs())
+    @foreach (var item in Helpers.GetNewestArticles().Take(2))
+    {
+        <div class="article">
+            <h3>
+                @Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = "asd" }, new { @class = "" })
+            </h3>
+            <p class="dateAdded">Публикувано на @item.DateAdded.ToLongDateString()</p>
+            <div class="thumb">
+                <img src="@item.Thumbnail.ToString()" width="300" height="169" />
+            </div>
+            <p class="content">
+                @item.Description
+            </p>
+            <div style="clear:both;"></div>
+            @Html.ActionLink("Прочети повече...", "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "readmorebtn" })
+        </div>
+    }
+
+    <div class="accordion-menu">
+        <p class="header">КОМПЮТРИ</p>
+        <div class="accordion">
+            @{
+                var cat = Helpers.GetCategories().First(x => x.ID == 1);
+            }
+
+            @foreach (var item in Helpers.GetNewestArticles().Where(x => x.CategoryID == cat.ID).Take(3))
+            {
+
+                <h5>@item.Title</h5>
+                <div style="font-size: 12px;">
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    @item.Description.Substring(0, 100)...
+                </div>
+            }
+        </div>
+    </div>
+    <div class="accordion-menu">
+        <p class="header">НАУКА</p>
+        <div class="accordion">
+            @{
+                cat = Helpers.GetCategories().First(x => x.ID == 2);
+            }
+
+            @foreach (var item in Helpers.GetNewestArticles().Where(x => x.CategoryID == cat.ID).Take(3))
+            {
+
+                <h5>@item.Title</h5>
+                <div style="font-size: 12px;">
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    @item.Description.Substring(0, 100)...
+                </div>
+            }
+        </div>
+    </div>
+    <div class="accordion-menu">
+        <p class="header">АВТОМОБИЛИ</p>
+        <div class="accordion">
+            @{
+                cat = Helpers.GetCategories().First(x => x.ID == 3);
+            }
+            @foreach (var item in Helpers.GetNewestArticles().Where(x => x.CategoryID == cat.ID).Take(3))
+            {
+
+                <h5>@item.Title</h5>
+                <div style="font-size: 12px;">
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    @item.Description.Substring(0, 100)...
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="right-panel">
+    @Html.Partial("_RightNavPartial", Helpers.GetNewestArticles())
+    <div id="editors-choice">
+        <p class="header">
+            Изобр на редактора @*@ViewBag.Asd*@
+        </p>
+        <a href="#">
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="~/Content/Images/japanea.jpg" width="70" height="50" />
+                </div>
+                <p>asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd </p>
+            </div>
+        </a>
+        <a href="#">
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="~/Content/Images/japanea.jpg" width="70" height="50" />
+                </div>
+                <p>asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd </p>
+            </div>
+        </a>
+        <a href="#">
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="~/Content/Images/japanea.jpg" width="70" height="50" />
+                </div>
+                <p>asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd </p>
+            </div>
+        </a>
+    </div>
+</div>
+<div style="clear:both;"></div>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    $(".accordion").accordion({
+        collapsible: true,
+    });
+</script>

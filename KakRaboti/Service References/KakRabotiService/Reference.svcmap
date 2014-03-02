@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="82d9e674-db77-43b4-baae-9227ac2091fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:64791/KakRabotiService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KakRabotiService.xsd" MetadataType="Schema" ID="a5531114-fc6a-4f90-a981-3cd093d93a1a" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd0" />
+    <MetadataFile FileName="KakRabotiService1.xsd" MetadataType="Schema" ID="523d7ec8-8e10-4622-80a7-26ab41304aba" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd2" />
+    <MetadataFile FileName="KakRabotiService.disco" MetadataType="Disco" ID="67eb9638-3a20-4714-a52c-db70a627ee79" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?disco" />
+    <MetadataFile FileName="KakRabotiService.wsdl" MetadataType="Wsdl" ID="61e371ff-84e7-45c0-8e13-1cef19b80355" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?wsdl" />
+    <MetadataFile FileName="KakRabotiService2.xsd" MetadataType="Schema" ID="d79a3a5b-3235-4c12-a4a8-879300d88a4f" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,53 @@
+﻿@model KakRaboti.Models.EditUserViewModel
+@{
+    ViewBag.Title = "Редактиране на потребител";
+}
+
+<div class="user-register-form">
+    @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Редактиране на потребител</h4>
+
+        <div class="form-group">
+            @if (ViewData.ModelState["Username"] == null || ViewData.ModelState["Username"].Errors.Count() < 1)
+            {
+                @Html.LabelFor(model => model.Username, new { @class = "form-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                </div>
+            }
+            else
+            {
+                @Html.LabelFor(model => model.Username, new { @class = "form-label invalid", @title = ViewData.ModelState["Username"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                <div>
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control invalid" })
+                </div>
+            }
+
+        </div>
+        <div class="form-group">
+                @if (ViewData.ModelState["RoleID"] == null || ViewData.ModelState["RoleID"].Errors.Count() < 1)
+                {
+                    @Html.LabelFor(model => model.RoleID, new { @class = "form-label" })
+                    <div>
+                        @Html.DropDownList("RoleID", null, new { @class = "form-control" })
+                    </div>
+                }
+                else
+                {
+                    @Html.LabelFor(model => model.RoleID, new { @class = "form-label invalid", @title = ViewData.ModelState["RoleID"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                    <div>
+                        @Html.DropDownList("RoleID", null, new { @class = "form-control invalid" })
+                    </div>
+                }
+
+            </div>
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Редактирай" />
+            </div>
+        </div>
+    }
+</div>
+

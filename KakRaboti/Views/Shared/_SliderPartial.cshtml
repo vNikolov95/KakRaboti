@@ -1,0 +1,96 @@
+﻿@model IEnumerable<KakRaboti.KakRabotiService.Article>
+<div id="slider-container">
+    <div id="slideshow">
+        @{
+            int i = 1;
+            foreach (var item in Model)
+            {
+                <text>
+                    <div class="slider-header @i">
+                        @Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })
+                        <div style="clear:both;"></div>
+                        <div id="thumbnail">
+                            <img src="@item.Thumbnail.ToString()" width="300" height="169" />
+                        </div>
+                        <div id="slider-description">
+                            <p>
+                                @item.Description
+                            </p>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </text>
+                i++;
+            }
+
+        }
+
+    </div>
+    <ul class="slider-pagination"></ul>
+</div><div style="clear:both;"></div>
+
+<script>
+    $("#slideshow > div:gt(0)").hide();
+    var index = 1;
+    var maxindex = $('#slideshow > div').length;
+    for (var i = 0; i < maxindex; i++) {
+        var z = i + 1;
+        $('.slider-pagination').append('<a href="javascript:;" class="slider-pages"><li class="' + (i == 0 ? 'active' : '') + '" id="' + z + '"></li></a>');
+    }
+
+    $('.slider-pages').click(function () {
+        var beforeIndex = $('.slider-pagination').find('.active').attr('id');
+        $('.slider-pagination li').removeClass('active');
+        $(this).children().first().addClass('active');
+        var i = $(this).children().first().attr('id');
+        if (i != beforeIndex) {
+            $('.slider-header.' + beforeIndex).hide();
+            $('.slider-header.' + i).fadeIn(1000);
+        }
+    });
+
+    var s = setInterval(function () {
+        var currentIndex = $('.slider-pagination').find('.active').attr('id');
+        $('.slider-header.' + currentIndex)
+            .hide()
+            .next()
+            .fadeIn(1000)
+            .end()
+            .appendTo('#slideshow');
+        $('.slider-pagination li').removeClass('active');
+        $('.slider-pagination li:eq(' + index + ')').addClass('active');
+        index = index < maxindex - 1 ? index + 1 : 0;
+    }, 5000);
+
+
+    $('.slider-pages').mouseout(function () {
+        s = setInterval(function () {
+            var currentIndex = $('.slider-pagination').find('.active').attr('id');
+            var nextIndex = currentIndex < maxindex ? parseInt(currentIndex) + 1 : 1;
+            $('.slider-header.' + currentIndex).hide();
+            $('.slider-header.' + nextIndex).fadeIn(1000).appendTo('#slideshow');
+            $('.slider-pagination li').removeClass('active');
+            $('.slider-pagination li#' + nextIndex).addClass('active');
+        }, 5000);
+    });
+
+    $('#slideshow').mouseout(function () {
+        s = setInterval(function () {
+            var currentIndex = $('.slider-pagination').find('.active').attr('id');
+            var nextIndex = currentIndex < maxindex ? parseInt(currentIndex) + 1 : 1;
+            $('.slider-header.' + currentIndex).hide();
+            $('.slider-header.' + nextIndex).fadeIn(1000).appendTo('#slideshow');
+            $('.slider-pagination li').removeClass('active');
+            $('.slider-pagination li#' + nextIndex).addClass('active');
+        }, 5000);
+    });
+
+    $('#slideshow').mouseover(function () {
+        clearInterval(s);
+    });
+
+    $('.slider-pages').mouseover(function () {
+        clearInterval(s);
+    });
+
+</script>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="KakRabotiService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:64791/KakRabotiService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64791/KakRabotiService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:64791/KakRabotiService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KakRabotiBusiness" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IKakRabotiService_DeleteComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteComment" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_DeleteComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetAllArticles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllArticles" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetAllArticles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllArticlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetNotApprovedArticles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotApprovedArticles" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetNotApprovedArticles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotApprovedArticlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_ApproveArticle_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveArticle" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_ApproveArticle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetArticleById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetArticleById" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetArticleById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetArticleByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_UpdateArticleViews_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateArticleViews" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_UpdateArticleViews_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateArticleViewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetAllCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetAllCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCategory" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_EditCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategory" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_EditCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateArticle_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateArticle" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateArticle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_DeleteCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategory" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_DeleteCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_EditArticle_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditArticle" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_EditArticle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_DeleteArticle_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteArticle" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_DeleteArticle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetComments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComments" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_GetComments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateComment" />
+  </wsdl:message>
+  <wsdl:message name="IKakRabotiService_CreateComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCommentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IKakRabotiService">
+    <wsdl:operation name="DeleteComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteComment" message="tns:IKakRabotiService_DeleteComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteCommentResponse" message="tns:IKakRabotiService_DeleteComment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllArticles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetAllArticles" message="tns:IKakRabotiService_GetAllArticles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetAllArticlesResponse" message="tns:IKakRabotiService_GetAllArticles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotApprovedArticles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetNotApprovedArticles" message="tns:IKakRabotiService_GetNotApprovedArticles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetNotApprovedArticlesResponse" message="tns:IKakRabotiService_GetNotApprovedArticles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveArticle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/ApproveArticle" message="tns:IKakRabotiService_ApproveArticle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/ApproveArticleResponse" message="tns:IKakRabotiService_ApproveArticle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetArticleById" message="tns:IKakRabotiService_GetArticleById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetArticleByIdResponse" message="tns:IKakRabotiService_GetArticleById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArticleViews">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/UpdateArticleViews" message="tns:IKakRabotiService_UpdateArticleViews_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/UpdateArticleViewsResponse" message="tns:IKakRabotiService_UpdateArticleViews_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetAllCategories" message="tns:IKakRabotiService_GetAllCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetAllCategoriesResponse" message="tns:IKakRabotiService_GetAllCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetCategoryById" message="tns:IKakRabotiService_GetCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetCategoryByIdResponse" message="tns:IKakRabotiService_GetCategoryById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/CreateCategory" message="tns:IKakRabotiService_CreateCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/CreateCategoryResponse" message="tns:IKakRabotiService_CreateCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/EditCategory" message="tns:IKakRabotiService_EditCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/EditCategoryResponse" message="tns:IKakRabotiService_EditCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateArticle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/CreateArticle" message="tns:IKakRabotiService_CreateArticle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/CreateArticleResponse" message="tns:IKakRabotiService_CreateArticle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteCategory" message="tns:IKakRabotiService_DeleteCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteCategoryResponse" message="tns:IKakRabotiService_DeleteCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditArticle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/EditArticle" message="tns:IKakRabotiService_EditArticle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/EditArticleResponse" message="tns:IKakRabotiService_EditArticle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArticle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteArticle" message="tns:IKakRabotiService_DeleteArticle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/DeleteArticleResponse" message="tns:IKakRabotiService_DeleteArticle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/GetComments" message="tns:IKakRabotiService_GetComments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/GetCommentsResponse" message="tns:IKakRabotiService_GetComments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKakRabotiService/CreateComment" message="tns:IKakRabotiService_CreateComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKakRabotiService/CreateCommentResponse" message="tns:IKakRabotiService_CreateComment_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IKakRabotiService" type="tns:IKakRabotiService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteComment">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/DeleteComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllArticles">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetAllArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotApprovedArticles">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetNotApprovedArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveArticle">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/ApproveArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleById">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetArticleById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArticleViews">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/UpdateArticleViews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetAllCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCategory">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/CreateCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditCategory">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/EditCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateArticle">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/CreateArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategory">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/DeleteCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditArticle">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/EditArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArticle">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/DeleteArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComments">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/GetComments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateComment">
+      <soap:operation soapAction="http://tempuri.org/IKakRabotiService/CreateComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KakRabotiService">
+    <wsdl:port name="BasicHttpBinding_IKakRabotiService" binding="tns:BasicHttpBinding_IKakRabotiService">
+      <soap:address location="http://localhost:64791/KakRabotiService.svc/KakRabotiService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

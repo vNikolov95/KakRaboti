@@ -1,0 +1,17 @@
+﻿@model IEnumerable<KakRaboti.KakRabotiService.Article>
+
+<span style="font: bold 23px Arial; margin-left: 20px;">@ViewBag.Title</span>
+
+<div class="category-articles-list">
+    @foreach (var item in Model.OrderByDescending(x => x.Views).Take(3))
+    {
+        <div class="category-article" style="float: left;">
+            <div class="small-thumbnail">
+                <img src="@item.Thumbnail" width="70" height="50" />
+            </div>
+            <p>@Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })</p>
+        </div>
+    }
+</div>
+<div style="clear: both;"></div>
+

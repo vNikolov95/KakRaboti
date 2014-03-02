@@ -1,0 +1,95 @@
+﻿@model KakRaboti.KakRabotiService.Article
+
+
+<div class="article-read">
+    <span style="font: bold 23px Arial;">@Model.Title</span>
+    <p style="font-size:12px;">
+        <span class="category">Категория: @Model.Category.Name </span>
+        <span class="date">Публикувано на @Model.DateAdded.ToLongDateString()</span><br /><br />
+        <span class="writtenby">Написано от @Model.Author</span>
+        <span class="views">Преглеждания: @Model.Views</span>
+    </p>
+    @Html.Raw(Html.Raw(Model.Text))
+    <br />
+    @if (Request.IsAuthenticated)
+    {
+        <div id="new-comment-body">
+            <span style="font: bold 18px Arial;">Напиши коментар</span><br />
+            <textarea style="width: 500px;" class="form-control-text" id="comment-text"></textarea><br />
+            <input type="button" value="Добави" id="addComment" />
+        </div>
+    }
+    else
+    {
+        <div id="new-comment-body">
+            <span style="font: bold 18px Arial;">Напиши коментар</span><br />
+            <textarea disabled="disabled" style="width: 500px;" class="form-control-text" id="comment-text"></textarea><br />
+            <input type="button" value="Добави" id="addComment"  disabled />
+            <a href="/Account/Login?ReturnUrl=@Request.Url.LocalPath">Влезте в профила си за да добавите коментар.</a>
+        </div>
+    }
+    <div id="comments-container">
+        <span style="font: bold 18px Arial;">Коментари</span><br />
+        <div id="comments">
+
+        </div>
+    </div><br />
+    <div style="clear: both;"></div>
+</div>
+
+<script>
+    var getCommentsUrl = "/Article/GetComments/";
+    var addCommentUrl = "/Article/AddComment";
+
+    $(document).ready(function () {
+        @if(Model.Comments.Count() > 0) {
+        <text>
+            $.getJSON(getCommentsUrl, { articleId: '@Model.ID' }, function (data) {
+                $.each(data, function (i, item) {
+                    $('#comments').prepend('<span class="writtenby">от ' + item.Author + '</span><span class="date" style="font-size: 11px;">' + item.DateAdded + '</span><p>' + item.Text + '</p><hr />');
+                });
+            });
+        </text>
+        }
+        else
+        {
+            <text>
+                 $('#comments').prepend('<p>Няма коментари</p>');
+            </text>
+        }
+    });
+
+
+    $('#addComment').click(function () {
+        if ($('#comment-text').val() != "") {
+
+            var commentText = $('#comment-text').val();
+            var articleId = '@Model.ID';
+            var author;
+            author = '@User.Identity.Name';
+            $.post(addCommentUrl, { text: commentText, articleId: articleId, author: author }, function (data) {
+                $.getJSON(getCommentsUrl, { articleId: '@Model.ID' }, function (data) {
+                    $('#comments').html("");
+                    $.each(data, function (i, item) {
+                        $('#comments').prepend('<span class="writtenby">от ' + item.Author + '</span><span class="date" style="font-size: 11px;">' + item.DateAdded + '</span><p>' + item.Text + '</p><hr />');
+                    });
+                });
+            });
+
+        }
+    });
+    @if(Model.Comments.Count() > 0) {
+        <text>
+            window.setInterval(function () {
+                $.getJSON(getCommentsUrl, { articleId: '@Model.ID' }, function (data) {
+                    $('#comments').html("");
+                    $.each(data, function (i, item) {
+                        $('#comments').prepend('<span class="writtenby">от ' + item.Author + '</span><span class="date" style="font-size: 11px;">' + item.DateAdded + '</span><p>' + item.Text + '</p><hr />');
+                    });
+                });
+            }, 5000);
+        </text>
+    }
+
+</script>
+

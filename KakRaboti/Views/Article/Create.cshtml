@@ -1,0 +1,151 @@
+﻿@model KakRaboti.Models.CreateArticleViewModel
+
+@{
+    ViewBag.Title = "Създаване на статия";
+}
+
+
+<div id="create-article-content">
+    <h1>Нова статия</h1>
+    @using (Html.BeginForm("Create", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @if (ViewData.ModelState["Title"] == null || ViewData.ModelState["Title"].Errors.Count() < 1)
+                {
+                    @Html.LabelFor(model => model.Title, new { @class = "form-label" })
+                    <div>
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    </div>
+                }
+                else
+                {
+                    @Html.LabelFor(model => model.Title, new { @class = "form-label invalid", @title = ViewData.ModelState["Title"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                    <div>
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control invalid" })
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                @if (ViewData.ModelState["Text"] == null || ViewData.ModelState["Text"].Errors.Count() < 1)
+                {
+                    @Html.LabelFor(model => model.Text, new {  @class = "form-label" })
+                    <div>
+                        @Html.TextAreaFor(model => model.Text, new { @id = "Text", @class = "form-control-text" })
+                    </div>
+                }
+                else
+                {
+                    @Html.LabelFor(model => model.Text, new {  @class = "form-label invalid", @title = ViewData.ModelState["Text"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                    <div>
+                        @Html.TextAreaFor(model => model.Text, new { @id = "Text", @class = "form-control-text invalid" })
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                @if (ViewData.ModelState["Description"] == null || ViewData.ModelState["Description"].Errors.Count() < 1)
+                {
+                    @Html.LabelFor(model => model.Description, new { @class = "form-label" })
+                    <div>
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control-text", @maxlength = "400" })
+                    </div>
+                }
+                else
+                {
+                    @Html.LabelFor(model => model.Description, new { @class = "form-label invalid", @title = ViewData.ModelState["Description"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                    <div>
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control-text invalid", @maxlength = "400" })
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                @if (ViewData.ModelState["CategoryID"] == null || ViewData.ModelState["CategoryID"].Errors.Count() < 1)
+                {
+                    @Html.LabelFor(model => model.CategoryID, new { @class = "form-label" })
+                    <div>
+                        @Html.DropDownList("CategoryID", null, new { @class = "form-control" })
+                    </div>
+                }
+                else
+                {
+                    @Html.LabelFor(model => model.Description, new { @class = "form-label invalid", @title = ViewData.ModelState["CategoryID"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                    <div>
+                        @Html.DropDownList("CategoryID", null, new { @class = "form-control invalid" })
+                    </div>
+                }
+
+            </div>
+
+            <div class="form-group">
+                @if (ViewData.ModelState["Thumbnail"] == null || ViewData.ModelState["Thumbnail"].Errors.Count() < 1)
+                {
+                    <label class="form-label">Mиниатюра</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" id="thumb-textbox" class="form-control" style="float: left;" disabled="disabled" />
+                    <div class="fileUpload">
+                        <span>Избери</span>
+                        <input type="file" class="upload" id="file" name="file" accept="image/*" />
+                    </div>
+                    <div style="clear: both;"></div>
+                }
+                else
+                {
+                    <label class="form-label invalid" title="@ViewData.ModelState["Thumbnail"].Errors.First().ErrorMessage">Mиниатюра*</label>
+                    <div style="clear: both;"></div>
+                    <input type="text" id="thumb-textbox" class="form-control invalid" style="float: left;" disabled="disabled" />
+                    <div class="fileUpload">
+                        <span>Избери</span>
+                        <input type="file" class="upload" id="file" name="file" accept="image/*" />
+                    </div>
+                    <div style="clear: both;"></div>
+                }
+
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Създай" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-te-1.4.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#Text').jqte();
+
+
+
+        $("input#file").change(function () {
+            $('#thumb-textbox').val($(this).val());
+        });
+
+        $('.form-label.invalid').tooltip({
+            position: {
+                my: "left",
+                at: "right+20"
+            },
+        });
+
+        $('.form-control').focusin(function () {
+            $('.form-label.invalid').tooltip("close");
+        });
+        $('.form-control-text').focusin(function () {
+            $('.form-label.invalid').tooltip("close");
+        });
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <text>$('.form-label.invalid').tooltip("open");</text>
+        }
+    });
+
+</script>

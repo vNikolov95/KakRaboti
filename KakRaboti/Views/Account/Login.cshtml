@@ -1,0 +1,73 @@
+﻿@model KakRaboti.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Вход";
+}
+
+<div class="user-register-form">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                
+                <div class="form-group">
+                    @if (ViewData.ModelState["InvalidUsername"] != null)
+                    {
+                        <span style="color: red;"> @ViewData.ModelState["InvalidUsername"].Errors.First().ErrorMessage</span><br /><br />
+                    }
+                    @if (ViewData.ModelState["UserName"] == null || ViewData.ModelState["UserName"].Errors.Count() < 1)
+                    {
+                        @Html.LabelFor(model => model.UserName, new { @class = "form-label" })
+                        <div>
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.LabelFor(model => model.UserName, new { @class = "form-label invalid", @title = ViewData.ModelState["UserName"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                        <div>
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control invalid" })
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    @if (ViewData.ModelState["Password"] == null || ViewData.ModelState["Password"].Errors.Count() < 1)
+                    {
+                        @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                        <div>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.LabelFor(model => model.Password, new { @class = "form-label invalid", @title = ViewData.ModelState["Password"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                        <div>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control invalid" })
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div>
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Вход" />
+                    </div>
+                </div>
+
+                }
+            </section>
+        </div>
+
+    </div>
+</div>

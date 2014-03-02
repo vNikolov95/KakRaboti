@@ -1,0 +1,227 @@
+﻿@using KakRaboti.Helpers
+@{
+    ViewBag.Title = "Администраторски панел";
+}
+<div id="admin-panel">
+    <table cellpadding="0" cellspacing="0" style="padding: 0px;">
+        <tr>
+            <td height="100" style="margin: 0;">
+                <div id="admin-panel-nav">
+                    <ul>
+                        <li class="current"><a href="#admin-panel-1"><img src="~/Content/Images/articles-back.png" />Статии</a></li>
+                        <li><a href="#admin-panel-2"><img src="~/Content/Images/comments-back.png" />Коментари</a></li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li><a href="#admin-panel-3"><img src="~/Content/Images/categories-back.png" />Категории</a></li>
+                            <li><a href="#admin-panel-4"><img src="~/Content/Images/users-back.png" />Потебители</a></li>
+                        }
+                    </ul>
+                </div>
+            </td>
+            <td valign="top">
+                <div class="admin-panel-content" id="admin-panel-1">
+                    <div class="admin-panel-box">
+                        <h3>Всички статии <a href="/Article/Create"><img src="~/Content/Images/plus-icon.png" width="25" height="25" alt="add" title="Нова статия" style="line-height: 25px;" /></a></h3>
+                        <ul class="list-table">
+                            @foreach (var item in Helpers.GetNewestArticles())
+                            {
+                                <li><a class="expand" href="javascript:;" articleid="@item.ID">@item.Title</a></li>
+                                <li style="display: none;" class="icons">
+                                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="~/Content/Images/icon-view.png" alt="review" title="Прегледай" width="25" height="20" /></a>
+                                    <a href="/Article/Edit/@item.ID?ReturnUrl=/Admin/Index"><img src="~/Content/Images/edit-icon.jpg" alt="edit" title="Редактирай" width="20" height="20" /></a>
+                                    <a class="delete-article" href="javascript:;"><img src="~/Content/Images/cross-icon.png" alt="delete" title="Изтрий" width="20" height="20" /></a>
+
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="admin-panel-box" style="margin-left: 10px;">
+                        <h3>Статии чакащи одобрение</h3>
+                        @if (Helpers.GetNotApprovedArticles().Count() < 1)
+                        {
+                            <p>Няма статии за одобрение</p>
+                        }
+                        else
+                        {
+                            <ul class="list-table">
+
+                                @foreach (var item in Helpers.GetNotApprovedArticles())
+                                {
+                                    <li><a class="expand" href="javascript:;" articleid="@item.ID">@item.Title</a></li>
+                                    <li style="display: none;" class="icons">
+                                        <a href="/Article/Edit/@item.ID?ReturnUrl=/Admin/Index"><img src="~/Content/Images/edit-icon.jpg" alt="edit" title="Редактирай" width="20" height="20" /></a>
+                                        <a class="approve-article" href="javascript:;"><img src="~/Content/Images/tick-icon.png" alt="delete" title="Одобри" width="20" height="20" /></a>
+                                        <a class="delete-article" href="javascript:;"><img src="~/Content/Images/cross-icon.png" alt="delete" title="Изтрий" width="20" height="20" /></a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+                <div class="admin-panel-content" id="admin-panel-2">
+                    <div class="admin-panel-box">
+                        <h3>Всички статии <a href="/Article/Create"><img src="~/Content/Images/plus-icon.png" width="25" height="25" alt="add" title="Нова статия" style="line-height: 25px;" /></a></h3>
+                        <ul class="list-table">
+                            @foreach (var item in Helpers.GetNewestArticles())
+                            {
+                                <li><a class="article-comments" href="javascript:;" articleid="@item.ID">@item.Title</a></li>
+                                <li style="display: none;" class="icons">
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="admin-panel-box" id="comments" style="margin-left: 10px; margin-top: 10px;">
+                        <h3>Коментари</h3>
+                        <p id="not-selected">Изберете статия</p>
+                        <div id="comments-list" style="width: 400px; margin-bottom: 20px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-panel-content" id="admin-panel-3">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <text>
+                            <h3>Всички категории <a href="/Category/Create"><img src="~/Content/Images/plus-icon.png" width="25" height="25" alt="add" title="Нова категория" style="line-height: 25px;" /></a></h3>
+                            <ul class="list-table">
+                                @foreach (var item in Helpers.GetCategories())
+                                {
+                                    <li><a class="expand" href="javascript:;" articleid="@item.ID">@item.Name</a></li>
+                                    <li style="display: none;" class="icons">
+                                        <a href="/Category/Edit/@item.ID?ReturnUrl=/Admin/Index"><img src="~/Content/Images/edit-icon.jpg" alt="edit" title="Редактирай" width="20" height="20" /></a>
+                                        <a class="delete-category" href="javascript:;"><img src="~/Content/Images/cross-icon.png" alt="delete" title="Изтрий" width="20" height="20" /></a>
+
+                                    </li>
+                                }
+                            </ul>
+
+                        </text>
+                    }
+                </div>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <div class="admin-panel-content" id="admin-panel-4">
+                        <h3>Всички потребители <a href="/Category/Create"><img src="~/Content/Images/plus-icon.png" width="25" height="25" alt="add" title="Нова категория" style="line-height: 25px;" /></a></h3>
+                        <ul class="list-table">
+                            @foreach (var item in Helpers.GetUsers())
+                            {
+                                <li>
+                                    <a class="expand" href="javascript:;" articleid="@item.Id">
+                                        @if (item.Roles.Count > 0)
+                                        {
+                                            if (item.Roles.First().RoleId == "1")
+                                            {
+                                                <span style="color: red;">@item.UserName</span>
+                                            }
+                                            if (item.Roles.First().RoleId == "2")
+                                            {
+                                                <span style="color: green;">@item.UserName</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @item.UserName
+                                        }
+                                    </a>
+                                </li>
+                                <li style="display: none;" class="icons">
+                                    <a href="/Account/Edit/@item.Id?ReturnUrl=/Admin/Index"><img src="~/Content/Images/edit-icon.jpg" alt="edit" title="Редактирай" width="20" height="20" /></a>
+                                    <a class="delete-user" href="javascript:;"><img src="~/Content/Images/cross-icon.png" alt="delete" title="Изтрий" width="20" height="20" /></a>
+
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="clear:both"></div>
+
+<script>
+    $(document).ready(function () {
+        $('#admin-panel-nav li').click(function () {
+            $('#admin-panel-nav ul').find('.current').removeClass('current');
+            $(this).addClass('current');
+        });
+
+        $('.list-table li').filter(':visible');
+
+        $('#admin-panel').tabs();
+
+        $('.list-table .expand').click(function () {
+            $(this).parent().next().toggle();
+            $(this).parent().toggleClass('expanded');
+        });
+
+        $('.delete-article').click(function () {
+            var articleId = $(this).parent().prev().children().first().attr('articleId');
+            if (confirm('Сигурни ли сте че искате да изтриете статията?')) {
+                $.post("/Article/Delete/" + articleId, {}, function (data) {
+
+                });
+                $(this).parent().prev().remove();
+                $(this).parent().remove();
+            } else {
+
+            }
+        });
+
+        $('.delete-category').click(function () {
+            var articleId = $(this).parent().prev().children().first().attr('articleId');
+            if (confirm('Сигурни ли сте че искате да изтриете категорията?')) {
+                $.post("/Category/Delete/" + articleId, {}, function (data) {
+
+                });
+                $(this).parent().prev().remove();
+                $(this).parent().remove();
+            } else {
+
+            }
+        });
+
+        $('.approve-article').click(function () {
+            var articleId = $(this).parent().prev().children().first().attr('articleId');
+            $.post("/Article/Approve/" + articleId, {}, function (data) {
+
+            });
+            $(this).parent().prev().remove();
+            $(this).parent().remove();
+        });
+
+        $('.article-comments').click(function () {
+
+            $('#comments-list').html("");
+            $('#not-selected').remove();
+
+            var getCommentsUrl = "/Article/GetComments/";
+            $.getJSON(getCommentsUrl, { articleId: $(this).attr('articleId') }, function (data) {
+                if (data.length) {
+                    $.each(data, function (i, item) {
+                        $('#comments-list').append('<div><span class="writtenby" style="float: left;">от ' + item.Author + '</span><span class="date" style="font-size: 11px; float: left;">' + item.DateAdded + '</span>'
+                            + '<a class="delete-comment" commentId="' + item.Id + '" href="javascript:;"><img src="/Content/Images/cross-icon.png" alt="delete" title="Изтрий" width="20" height="20" /></a>'
+                            + '<div style="clear: both;"></div><p>' + item.Text + '</p><hr /></div>');
+                    });
+                } else {
+                    $('#comments-list').append('Няма коментари за тази статия. Моля изберете друга.');
+                }
+                $('.delete-comment').click(function () {
+                    var commentId = $(this).attr('commentId');
+                    if (confirm('Сигурни ли сте че искате да изтриете коментара?')) {
+                        $.post("/Article/DeleteComment/" + commentId, {}, function (data) {
+
+                        });
+                        $(this).parent().remove();
+                    } else {
+
+                    }
+                });
+            });
+
+        });
+
+
+    });
+</script>

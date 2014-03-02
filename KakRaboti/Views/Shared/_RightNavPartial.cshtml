@@ -1,0 +1,81 @@
+﻿@model IEnumerable<KakRaboti.KakRabotiService.Article>
+<div id="right-nav">
+    <div id="headers">
+        <a href="javascript:;" class="current-header" id="popular-link">Най-гледани</a>
+        <a href="javascript:;" id="newest-link">Най-нови</a>
+        <a href="javascript:;" id="mostcommented-link">Най-коментирани</a>
+    </div>
+    <div class="right-nav-content current-nav" id="popular">
+        @foreach (var item in Model.OrderByDescending(x => x.Views).Take(3))
+        {
+            
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="@item.Thumbnail" width="70" height="50" />
+                </div>
+                <p>@Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })</p>
+            </div>
+        
+        }
+    </div>
+    <div class="right-nav-content" id="newest">
+        @foreach (var item in Model.Take(3))
+        {
+
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="@item.Thumbnail" width="70" height="50" />
+                </div>
+                <p>@Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })</p>
+            </div>
+
+        }
+    </div>
+    <div class="right-nav-content" id="most-commented">
+        @foreach (var item in Model.OrderByDescending(x => x.Comments.Count()).Take(3))
+        {
+
+            <div class="small-article">
+                <div class="small-thumbnail">
+                    <img src="@item.Thumbnail" width="70" height="50" />
+                </div>
+                <p>@Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })</p>
+            </div>
+
+        }
+    </div>
+</div>
+<div style="clear:both;"></div>
+<script>
+    $(document).ready(function () {
+        $('#popular').show();
+
+    });
+
+    $('#headers a').click(function () {
+        if (!$(this).hasClass('current-header')) {
+            $('#headers').find('.current-header').removeClass('current-header');
+            $(this).addClass('current-header');
+
+            var id = $(this).attr('id');
+            switch (id) {
+                case "popular-link":
+                    $('#right-nav').find('.current-nav').hide();
+                    $('#popular').fadeIn(500);
+                    $('#popular').addClass('current-nav');
+                    break;
+                case "newest-link":
+                    $('#right-nav').find('.current-nav').hide();
+                    $('#newest').fadeIn(500);
+                    $('#newest').addClass('current-nav');
+                    break;
+                case "mostcommented-link":
+                    $('#right-nav').find('.current-nav').hide();
+                    $('#most-commented').fadeIn(500);
+                    $('#most-commented').addClass('current-nav');
+                    break;
+            }
+        }
+    });
+
+</script>

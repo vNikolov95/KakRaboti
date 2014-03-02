@@ -1,0 +1,108 @@
+﻿@model KakRaboti.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+
+<div class="user-register-form">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Създаване на нов акаунт.</h4>
+
+        <div class="form-group">
+            @if (ViewData.ModelState["UserName"] == null || ViewData.ModelState["UserName"].Errors.Count() < 1)
+            {
+                @Html.LabelFor(model => model.UserName, new { @class = "form-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                </div>
+            }
+            else
+            {
+                @Html.LabelFor(model => model.UserName, new { @class = "form-label invalid", @title = ViewData.ModelState["UserName"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                <div>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control invalid" })
+                </div>
+            }
+
+        </div>
+        <div class="form-group">
+            @if (ViewData.ModelState["Email"] == null || ViewData.ModelState["Email"].Errors.Count() < 1)
+            {
+                @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                </div>
+            }
+            else
+            {
+                @Html.LabelFor(model => model.Email, new { @class = "form-label invalid", @title = ViewData.ModelState["Email"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                <div>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control invalid" })
+                </div>
+            }
+
+        </div>
+        <div class="form-group">
+            @if (ViewData.ModelState["Password"] == null || ViewData.ModelState["Password"].Errors.Count() < 1)
+            {
+                @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                <div>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                </div>
+            }
+            else
+            {
+                @Html.LabelFor(model => model.Password, new { @class = "form-label invalid", @title = ViewData.ModelState["Password"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                <div>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control invalid" })
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            @if (ViewData.ModelState["ConfirmPassword"] == null || ViewData.ModelState["ConfirmPassword"].Errors.Count() < 1)
+            {
+                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "form-label" })
+                <div>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            }
+            else
+            {
+                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "form-label invalid", @title = ViewData.ModelState["ConfirmPassword"].Errors.First().ErrorMessage })<text><span style="color: red;">*</span>&nbsp;&nbsp;</text>
+                <div>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control invalid" })
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Регистрация" />
+            </div>
+        </div>
+    }
+</div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script>
+    $(document).ready(function () {
+        $('.form-label.invalid').tooltip({
+            position: {
+                my: "left",
+                at: "right+20"
+            },
+        });
+
+        $('.form-control').focusin(function () {
+            $('.form-label.invalid').tooltip("close");
+        });
+        $('.form-control-text').focusin(function () {
+            $('.form-label.invalid').tooltip("close");
+        });
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <text>$('.form-label.invalid').tooltip("open");</text>
+        }
+
+    });
+</script>
