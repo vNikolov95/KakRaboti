@@ -14,7 +14,7 @@ using KakRaboti.KakRabotiService;
 
 namespace KakRaboti.Controllers
 {
-    [Authorize(Roles = "Administrator,Moderator")]
+    [Authorize]
     public class ArticleController : Controller
     {
         private KakRabotiService.KakRabotiServiceClient channel = new KakRabotiService.KakRabotiServiceClient();
@@ -97,6 +97,7 @@ namespace KakRaboti.Controllers
         }
 
         // GET: /Article/Edit/5
+        [Authorize(Roles = "Administrator,Moderator")]
         public ActionResult Edit(int id, string returnUrl)
         {
 
@@ -124,6 +125,7 @@ namespace KakRaboti.Controllers
 
 
         // POST: /Article/Edit/5
+        [Authorize(Roles = "Administrator,Moderator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -144,6 +146,7 @@ namespace KakRaboti.Controllers
         }
 
         // GET: /Article/Delete/5
+        [Authorize(Roles = "Administrator,Moderator")]
         public ActionResult Delete(int id)
         {
             channel.DeleteArticle(id);
@@ -151,6 +154,7 @@ namespace KakRaboti.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
+        [Authorize(Roles = "Administrator,Moderator")]
         public ActionResult Approve(int id)
         {
             channel.ApproveArticle(id);
@@ -173,11 +177,13 @@ namespace KakRaboti.Controllers
             return Json(Comments, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "Administrator,Moderator")]
         public void DeleteComment(int id)
         {
             channel.DeleteComment(id);
         }
 
+        [AllowAnonymous]
         public string AddComment(string author, string text, int articleId)
         {
             if (!String.IsNullOrWhiteSpace(author) && !String.IsNullOrWhiteSpace(text))
@@ -198,6 +204,7 @@ namespace KakRaboti.Controllers
             }
         }
 
+        [AllowAnonymous]
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
