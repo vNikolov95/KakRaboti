@@ -10,7 +10,7 @@
                         @Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })
                         <div style="clear:both;"></div>
                         <div id="thumbnail">
-                            <img src="@item.Thumbnail.ToString()" width="300" height="169" />
+                            <img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" width="300" height="169" />
                         </div>
                         <div id="slider-description">
                             <p>

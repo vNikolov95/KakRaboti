@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:64791/KakRabotiService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KakRabotiBusiness" />
+  <xs:import schemaLocation="http://kakrabotiservice.apphb.com/KakRabotiService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KakRabotiBusiness" />
   <xs:element name="DeleteComment">
     <xs:complexType>
       <xs:sequence>
@@ -11,6 +11,34 @@
   <xs:element name="DeleteCommentResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadThumbnail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadThumbnailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadThumbnailResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetImageResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAllArticles">
@@ -133,6 +161,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KakRabotiBusiness" minOccurs="0" name="article" nillable="true" type="q10:Article" />
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:64791/KakRabotiService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://kakrabotiservice.apphb.com/KakRabotiService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="KakRabotiService.xsd" MetadataType="Schema" ID="a5531114-fc6a-4f90-a981-3cd093d93a1a" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd0" />
-    <MetadataFile FileName="KakRabotiService1.xsd" MetadataType="Schema" ID="523d7ec8-8e10-4622-80a7-26ab41304aba" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd2" />
-    <MetadataFile FileName="KakRabotiService.disco" MetadataType="Disco" ID="67eb9638-3a20-4714-a52c-db70a627ee79" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?disco" />
-    <MetadataFile FileName="KakRabotiService.wsdl" MetadataType="Wsdl" ID="61e371ff-84e7-45c0-8e13-1cef19b80355" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?wsdl" />
-    <MetadataFile FileName="KakRabotiService2.xsd" MetadataType="Schema" ID="d79a3a5b-3235-4c12-a4a8-879300d88a4f" SourceId="1" SourceUrl="http://localhost:64791/KakRabotiService.svc?xsd=xsd1" />
+    <MetadataFile FileName="KakRabotiService3.xsd" MetadataType="Schema" ID="b47315c8-8eaf-4989-bd20-be4ee88750cd" SourceId="1" SourceUrl="http://kakrabotiservice.apphb.com/KakRabotiService.svc?xsd=xsd0" />
+    <MetadataFile FileName="KakRabotiService1.wsdl" MetadataType="Wsdl" ID="79d4bbb4-1e6a-4983-b302-acc33ff1ecc6" SourceId="1" SourceUrl="http://kakrabotiservice.apphb.com/KakRabotiService.svc?wsdl" />
+    <MetadataFile FileName="KakRabotiService1.disco" MetadataType="Disco" ID="69207cdf-26e7-4013-89f7-3e916d237367" SourceId="1" SourceUrl="http://kakrabotiservice.apphb.com/KakRabotiService.svc?disco" />
+    <MetadataFile FileName="KakRabotiService31.xsd" MetadataType="Schema" ID="19fc1cd1-3da1-4349-bb86-6fc92fc2cc2a" SourceId="1" SourceUrl="http://kakrabotiservice.apphb.com/KakRabotiService.svc?xsd=xsd1" />
+    <MetadataFile FileName="KakRabotiService32.xsd" MetadataType="Schema" ID="cf989687-0ddb-40ac-b377-ad4fc05d28a6" SourceId="1" SourceUrl="http://kakrabotiservice.apphb.com/KakRabotiService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

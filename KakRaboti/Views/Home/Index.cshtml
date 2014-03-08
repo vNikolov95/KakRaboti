@@ -12,7 +12,7 @@
             </h3>
             <p class="dateAdded">Публикувано на @item.DateAdded.ToLongDateString()</p>
             <div class="thumb">
-                <img src="@item.Thumbnail.ToString()" width="300" height="169" />
+                <img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" width="300" height="169" />
             </div>
             <p class="content">
                 @item.Description
@@ -34,7 +34,7 @@
 
                 <h5>@item.Title</h5>
                 <div style="font-size: 12px;">
-                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" width="150" height="80" /></a><br />
                     @item.Description.Substring(0, 100)...
                 </div>
             }
@@ -52,7 +52,7 @@
 
                 <h5>@item.Title</h5>
                 <div style="font-size: 12px;">
-                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" width="150" height="80" /></a><br />
                     @item.Description.Substring(0, 100)...
                 </div>
             }
@@ -69,7 +69,7 @@
 
                 <h5>@item.Title</h5>
                 <div style="font-size: 12px;">
-                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@item.Thumbnail.ToString()" width="150" height="80" /></a><br />
+                    <a href="/Article/Read/@item.ID/@item.FriendlyTitle"><img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" width="150" height="80" /></a><br />
                     @item.Description.Substring(0, 100)...
                 </div>
             }
@@ -79,9 +79,9 @@
 
 <div id="right-panel">
     @Html.Partial("_RightNavPartial", Helpers.GetNewestArticles())
-    <div id="editors-choice">
+    @*<div id="editors-choice">
         <p class="header">
-            Изобр на редактора @*@ViewBag.Asd*@
+            Изобр на редактора
         </p>
         <a href="#">
             <div class="small-article">
@@ -107,7 +107,7 @@
                 <p>asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd </p>
             </div>
         </a>
-    </div>
+    </div>*@
 </div>
 <div style="clear:both;"></div>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>

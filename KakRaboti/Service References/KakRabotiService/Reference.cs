@@ -478,6 +478,18 @@ namespace KakRaboti.KakRabotiService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/DeleteComment", ReplyAction="http://tempuri.org/IKakRabotiService/DeleteCommentResponse")]
         System.Threading.Tasks.Task DeleteCommentAsync(int commentId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/UploadThumbnail", ReplyAction="http://tempuri.org/IKakRabotiService/UploadThumbnailResponse")]
+        string UploadThumbnail(byte[] data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/UploadThumbnail", ReplyAction="http://tempuri.org/IKakRabotiService/UploadThumbnailResponse")]
+        System.Threading.Tasks.Task<string> UploadThumbnailAsync(byte[] data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/GetImage", ReplyAction="http://tempuri.org/IKakRabotiService/GetImageResponse")]
+        byte[] GetImage(string Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/GetImage", ReplyAction="http://tempuri.org/IKakRabotiService/GetImageResponse")]
+        System.Threading.Tasks.Task<byte[]> GetImageAsync(string Id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/GetAllArticles", ReplyAction="http://tempuri.org/IKakRabotiService/GetAllArticlesResponse")]
         KakRaboti.KakRabotiService.Article[] GetAllArticles();
         
@@ -533,10 +545,10 @@ namespace KakRaboti.KakRabotiService {
         System.Threading.Tasks.Task<KakRaboti.KakRabotiService.Category> EditCategoryAsync(KakRaboti.KakRabotiService.Category category);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/CreateArticle", ReplyAction="http://tempuri.org/IKakRabotiService/CreateArticleResponse")]
-        KakRaboti.KakRabotiService.Article CreateArticle(KakRaboti.KakRabotiService.Article article);
+        KakRaboti.KakRabotiService.Article CreateArticle(KakRaboti.KakRabotiService.Article article, byte[] data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/CreateArticle", ReplyAction="http://tempuri.org/IKakRabotiService/CreateArticleResponse")]
-        System.Threading.Tasks.Task<KakRaboti.KakRabotiService.Article> CreateArticleAsync(KakRaboti.KakRabotiService.Article article);
+        System.Threading.Tasks.Task<KakRaboti.KakRabotiService.Article> CreateArticleAsync(KakRaboti.KakRabotiService.Article article, byte[] data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKakRabotiService/DeleteCategory", ReplyAction="http://tempuri.org/IKakRabotiService/DeleteCategoryResponse")]
         void DeleteCategory(int categoryId);
@@ -602,6 +614,22 @@ namespace KakRaboti.KakRabotiService {
         
         public System.Threading.Tasks.Task DeleteCommentAsync(int commentId) {
             return base.Channel.DeleteCommentAsync(commentId);
+        }
+        
+        public string UploadThumbnail(byte[] data) {
+            return base.Channel.UploadThumbnail(data);
+        }
+        
+        public System.Threading.Tasks.Task<string> UploadThumbnailAsync(byte[] data) {
+            return base.Channel.UploadThumbnailAsync(data);
+        }
+        
+        public byte[] GetImage(string Id) {
+            return base.Channel.GetImage(Id);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetImageAsync(string Id) {
+            return base.Channel.GetImageAsync(Id);
         }
         
         public KakRaboti.KakRabotiService.Article[] GetAllArticles() {
@@ -676,12 +704,12 @@ namespace KakRaboti.KakRabotiService {
             return base.Channel.EditCategoryAsync(category);
         }
         
-        public KakRaboti.KakRabotiService.Article CreateArticle(KakRaboti.KakRabotiService.Article article) {
-            return base.Channel.CreateArticle(article);
+        public KakRaboti.KakRabotiService.Article CreateArticle(KakRaboti.KakRabotiService.Article article, byte[] data) {
+            return base.Channel.CreateArticle(article, data);
         }
         
-        public System.Threading.Tasks.Task<KakRaboti.KakRabotiService.Article> CreateArticleAsync(KakRaboti.KakRabotiService.Article article) {
-            return base.Channel.CreateArticleAsync(article);
+        public System.Threading.Tasks.Task<KakRaboti.KakRabotiService.Article> CreateArticleAsync(KakRaboti.KakRabotiService.Article article, byte[] data) {
+            return base.Channel.CreateArticleAsync(article, data);
         }
         
         public void DeleteCategory(int categoryId) {

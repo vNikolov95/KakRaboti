@@ -256,13 +256,23 @@
     <Content Include="Service References\KakRabotiService\KakRaboti.KakRabotiService.Comment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\KakRabotiService\KakRabotiService.disco" />
     <None Include="Service References\KakRabotiService\configuration91.svcinfo" />
     <None Include="Service References\KakRabotiService\configuration.svcinfo" />
+    <None Include="Service References\KakRabotiService\KakRabotiService1.wsdl" />
+    <None Include="Service References\KakRabotiService\KakRabotiService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KakRabotiService\KakRabotiService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\KakRabotiService\KakRabotiService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\KakRabotiService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\KakRabotiService\KakRabotiService1.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -293,16 +303,6 @@
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Read.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <None Include="Service References\KakRabotiService\KakRabotiService.wsdl" />
-    <None Include="Service References\KakRabotiService\KakRabotiService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\KakRabotiService\KakRabotiService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\KakRabotiService\KakRabotiService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

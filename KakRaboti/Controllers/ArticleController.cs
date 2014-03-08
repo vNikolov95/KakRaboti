@@ -23,10 +23,7 @@ namespace KakRaboti.Controllers
         [AllowAnonymous]
         public ActionResult Read(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
 
             Article article = channel.GetArticleById(id);
 
@@ -53,21 +50,15 @@ namespace KakRaboti.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Title,Text,CategoryID,Description")] CreateArticleViewModel article, HttpPostedFileBase file)
         {
-            Random _random = new Random(Environment.TickCount);
-            string chars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            StringBuilder builder = new StringBuilder(25);
-            for (int i = 0; i < 25; ++i)
-                builder.Append(chars[_random.Next(chars.Length)]);
-            string thumbnail = "";
+            byte[] data = null;
             if (file != null)
             {
-                string extension = Path.GetExtension(file.FileName);
-                if (extension.ToLower() != ".jpg" && extension.ToLower() != ".png" && extension.ToLower() != ".gif")
-                    return View(article);
-                string fileName = builder.ToString() + extension;
-                string path = Path.Combine(Server.MapPath("~/Thumbnails/"), fileName);
-                file.SaveAs(path);
-                thumbnail = "/Thumbnails/" + fileName;
+                Stream inputStream = file.InputStream;
+                MemoryStream stream = inputStream as MemoryStream;
+                stream = new MemoryStream();
+                inputStream.CopyTo(stream);
+                data = stream.ToArray();
+                
             }
             else
             {
@@ -83,17 +74,24 @@ namespace KakRaboti.Controllers
                     CategoryID = article.CategoryID,
                     DateAdded = DateTime.Now,
                     Description = article.Description,
-                    Thumbnail = thumbnail,
+                    Thumbnail = "",
                     State = 1,
                     Author = User.Identity.GetUserName(),
                     Views = 0,
                 };
-                channel.CreateArticle(newArticle);
+                channel.CreateArticle(newArticle,data);
                 return RedirectToAction("Index","Home");
             }
 
             ViewBag.CategoryID = new SelectList(channel.GetAllCategories(), "ID", "Name", article.CategoryID);
             return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult GetImage(string Id)
+        {
+            var image = channel.GetImage(Id);
+            return File(image, "image/jpg");
         }
 
         // GET: /Article/Edit/5
