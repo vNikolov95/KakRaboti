@@ -7,7 +7,7 @@
     {
         <div class="category-article" style="float: left;">
             <div class="small-thumbnail">
-                <img src="@item.Thumbnail" width="70" height="50" />
+                <img src="@Url.Action("GetImage", "Article", new { Id = item.Thumbnail })" alt="@item.Title" width="70" height="50" />
             </div>
             <p>@Html.ActionLink(item.Title, "Read", "Article", new { id = item.ID, name = item.FriendlyTitle }, new { @class = "article-title" })</p>
         </div>
