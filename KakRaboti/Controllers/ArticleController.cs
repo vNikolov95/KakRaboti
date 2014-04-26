@@ -11,6 +11,7 @@ using System.Text;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using KakRaboti.KakRabotiService;
+using System.Drawing;
 
 namespace KakRaboti.Controllers
 {
@@ -19,11 +20,24 @@ namespace KakRaboti.Controllers
     {
         private KakRabotiService.KakRabotiServiceClient channel = new KakRabotiService.KakRabotiServiceClient();
 
+        private bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
+
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" }; // add more if u like...
+
+            // linq from Henrik Stenbæk
+            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
+        }
+
         // GET: /Article/Read/5
         [AllowAnonymous]
         public ActionResult Read(int id)
         {
-            
+
 
             Article article = channel.GetArticleById(id);
 
@@ -53,12 +67,19 @@ namespace KakRaboti.Controllers
             byte[] data = null;
             if (file != null)
             {
-                Stream inputStream = file.InputStream;
-                MemoryStream stream = inputStream as MemoryStream;
-                stream = new MemoryStream();
-                inputStream.CopyTo(stream);
-                data = stream.ToArray();
-                
+                if (IsImage(file))
+                {
+                    Image image = new Bitmap(Image.FromStream(file.InputStream, true, true), new Size(169, 300));
+                    Stream inputStream = file.InputStream;
+                    MemoryStream stream = inputStream as MemoryStream;
+                    stream = new MemoryStream();
+                    inputStream.CopyTo(stream);
+                    data = stream.ToArray();
+                }
+                else
+                {
+                    ViewData.ModelState.AddModelError("Thumbnail", "Изберете снимка в правилен формат");
+                }
             }
             else
             {
@@ -79,8 +100,8 @@ namespace KakRaboti.Controllers
                     Author = User.Identity.GetUserName(),
                     Views = 0,
                 };
-                channel.CreateArticle(newArticle,data);
-                return RedirectToAction("Index","Home");
+                channel.CreateArticle(newArticle, data);
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.CategoryID = new SelectList(channel.GetAllCategories(), "ID", "Name", article.CategoryID);
@@ -107,7 +128,7 @@ namespace KakRaboti.Controllers
 
             ViewBag.CategoryID = new SelectList(channel.GetAllCategories(), "ID", "Name", article.CategoryID);
             ViewBag.ReturnUrl = returnUrl;
-            
+
             CreateArticleViewModel articleToEdit = new CreateArticleViewModel()
             {
                 Title = article.Title,
